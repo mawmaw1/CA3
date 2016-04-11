@@ -1,16 +1,12 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
-</html>
+<div class="container">
+
+      <form class="form-signin" style="width:25%; ">
+        <h2 class="form-signin-heading">Create a new user</h2>
+        <label for="inputEmail" class="sr-only">Username</label>
+        <input type="text" id="inputEmail" class="form-control" placeholder="Username" required autofocus ng-model="ctrl.user.username">
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required ng-model="ctrl.user.password">
+        <br/>
+        <button class="btn btn-lg btn-primary btn-block" ng-click="ctrl.adduser()">Create</button>
+      </form>
+    </div>
