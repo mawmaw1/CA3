@@ -3,7 +3,8 @@
   <p>Data from server (Users ONLY) <b style="color: darkblue">{{data}}</b></p>
   
   <input type="text" ng-model="ctrl.cvr">
-  <button ng-click="ctrl.getCvr(ctrl.cvr)">Search</button>
+  
+  <button ng-click="ctrl.getPhone(ctrl.cvr)">Search</button>
   <div>
       <table>
           <tr ng-repeat="balls in ctrl.data.productionunits">

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.view2', ['ngRoute'])
+angular.module('myApp.view2', ['ngRoute', 'ui.bootstrap'])
 
         .config(['$routeProvider', function ($routeProvider) {
                 $routeProvider.when('/view2', {
@@ -16,7 +16,7 @@ angular.module('myApp.view2', ['ngRoute'])
                     $http({
                         method: 'GET',
                         url: 'http://cvrapi.dk/api?vat=' + cvr + '&country=dk',
-                        skipAuthorization:true,
+                        skipAuthorization: true,
                     }).then(function successCallback(res) {
                         self.data = res.data;
                         console.log(self.data);
@@ -24,6 +24,29 @@ angular.module('myApp.view2', ['ngRoute'])
                         self.error = res.status + ": " + res.data.statusText;
                     });
                 });
-
+                self.getName = (function (name) {
+                    $http({
+                        method: 'GET',
+                        url: 'http://cvrapi.dk/api?name=' + name + '&country=dk',
+                        skipAuthorization: true,
+                    }).then(function successCallback(res) {
+                        self.data = res.data;
+                        console.log(self.data);
+                    }, function errorCallback(res) {
+                        self.error = res.status + ": " + res.data.statusText;
+                    });
+                });
+                self.getPhone = (function (phone) {
+                    $http({
+                        method: 'GET',
+                        url: 'http://cvrapi.dk/api?phone=' + phone + '&country=dk',
+                        skipAuthorization: true,
+                    }).then(function successCallback(res) {
+                        self.data = res.data;
+                        console.log(self.data);
+                    }, function errorCallback(res) {
+                        self.error = res.status + ": " + res.data.statusText;
+                    });
+                });
 
             }]);
