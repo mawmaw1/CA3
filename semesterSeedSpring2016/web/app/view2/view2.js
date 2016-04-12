@@ -12,13 +12,17 @@ angular.module('myApp.view2', ['ngRoute'])
 
         .controller('View2Ctrl', ['$http', function ($http) {
                 var self = this;
-          $http({
-            method: 'GET',
-            url: 'api/demouser'
-          }).then(function successCallback(res) {
-            self.data = res.data.message;
-          }, function errorCallback(res) {
-            self.error = res.status + ": "+ res.data.statusText;
-          });
+                self.getCvr = (function (cvr) {
+                    $http({
+                        method: 'GET',
+                        url: 'http://cvrapi.dk/api?vat=' + cvr + '&country=dk',
+                        skipAuthorization:true
+                    }).then(function successCallback(res) {
+                        self.data = res.data;
+                        console.log(self.data);
+                    }, function errorCallback(res) {
+                        self.error = res.status + ": " + res.data.statusText;
+                    });
+                });
 
         }]);
