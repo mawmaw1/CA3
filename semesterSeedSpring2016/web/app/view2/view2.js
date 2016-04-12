@@ -16,7 +16,7 @@ angular.module('myApp.view2', ['ngRoute', 'ui.bootstrap'])
                     $http({
                         method: 'GET',
                         url: 'http://cvrapi.dk/api?vat=' + cvr + '&country=dk',
-                        skipAuthorization: true,
+                        skipAuthorization: true
                     }).then(function successCallback(res) {
                         self.data = res.data;
                         console.log(self.data);
