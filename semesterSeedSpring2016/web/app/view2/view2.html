@@ -1,7 +1,16 @@
 
 
 <div>
-    <button ng-click="ctrl.getCvr()">Tryk her</button>
+    <input type="text" ng-model="ctrl.inputType">
+        <select name="singleSelect" ng-model="ctrl.data.singleSelect">
+      <option value="cvr">CVR</option>
+      <option value="name">Name</option>
+      <option value="phone">Phone</option>
+    </select><br>
+    
+    
+    <button ng-click="ctrl.getCompany(ctrl.inputType, ctrl.data.singleSelect)">Tryk her</button>
+    
     <h2>{{ctrl.data.name}}</h2>
     <table class="table table-striped">
         <thead>
@@ -15,12 +24,14 @@
             </tr>
         </thead>
         <tbody>
+            <tr>
             <td>{{ctrl.data.vat}}</td>
             <td>{{ctrl.data.address}}</td>
             <td>{{ctrl.data.zipcode}}, {{ctrl.data.city}}</td>
             <td>{{ctrl.data.startdate}}</td>
             <td>{{ctrl.data.employees}}</td>
             <td>Aktiv</td>
+            </tr>
         </tbody>
     </table>
     <uib-accordion ng-repeat="d in ctrl.data.productionunits">
