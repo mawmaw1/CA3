@@ -9,8 +9,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.security.RolesAllowed;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -52,6 +54,14 @@ public class Admin {
             result.add(p1);
         }
         return gson.toJson(result);    
+    }
+    
+    @DELETE
+    @Path("/user/{username}")
+    @Produces("application/json")
+    public String deleteUser(@PathParam("username") String username) {
+        entity.User c = fc.deleteUser(username);
+        return gson.toJson(c);
     }
  
 }

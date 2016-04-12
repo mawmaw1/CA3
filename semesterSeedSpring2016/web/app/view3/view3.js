@@ -12,7 +12,8 @@ app.config(['$routeProvider', function ($routeProvider) {
 
 app.controller('View3Ctrl', ["$http", function ($http) {
         var self = this;
-        $http.get('api/admin/users')
+        self.getUsers = function (){
+            $http.get('api/admin/users')
                 .success(function (data, status, headers, config) {
                     console.log(data);
                     self.data = data;
@@ -20,7 +21,15 @@ app.controller('View3Ctrl', ["$http", function ($http) {
                 .error(function (data, status, headers, config) {
 
                 });
-
+        };
+        self.getUsers();       
+        self.deleteUser = function (username){
+            $http.delete("api/admin/user/"+username).then(function (res){
+                console.log(res);
+                alert(res.data.userName + " has been deleted");
+                self.getUsers();
+            });
+        };
     }]);
 
 app.filter("roleFilter", [function () {
