@@ -1,4 +1,8 @@
-<p>This is the partial for view 2.</p>
+
 <div>
-  <p>Data from server (Users ONLY) <b style="color: darkblue">{{data}}</b></p>
+    <uib-accordion ng-repeat="d in ctrl.moredata">
+        <uib-accordion-group heading="{{d.name}}" style="margin: 1px;">
+            {{d.content}}
+        </uib-accordion-group>
+    </uib-accordion>
 </div>
