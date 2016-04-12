@@ -3,12 +3,12 @@
 angular.module('myApp.view2', ['ngRoute'])
 
         .config(['$routeProvider', function ($routeProvider) {
-            $routeProvider.when('/view2', {
-              templateUrl: 'app/view2/view2.html',
-              controller: 'View2Ctrl',
-              controllerAs: 'ctrl'
-            });
-          }])
+                $routeProvider.when('/view2', {
+                    templateUrl: 'app/view2/view2.html',
+                    controller: 'View2Ctrl',
+                    controllerAs: 'ctrl'
+                });
+            }])
 
         .controller('View2Ctrl', ['$http', function ($http) {
                 var self = this;
@@ -16,7 +16,7 @@ angular.module('myApp.view2', ['ngRoute'])
                     $http({
                         method: 'GET',
                         url: 'http://cvrapi.dk/api?vat=' + cvr + '&country=dk',
-                        skipAuthorization:true
+                        skipAuthorization:true,
                     }).then(function successCallback(res) {
                         self.data = res.data;
                         console.log(self.data);
@@ -25,4 +25,5 @@ angular.module('myApp.view2', ['ngRoute'])
                     });
                 });
 
-        }]);
+
+            }]);

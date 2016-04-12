@@ -47,13 +47,6 @@ public class Data {
      *
      * @return an instance of java.lang.String
      */
-    @GET
-    @Produces("application/json")
-    public String getJson() {
-        //TODO return proper representation object
-        throw new UnsupportedOperationException();
-    }
-
     /**
      * PUT method for updating or creating an instance of Data
      *
