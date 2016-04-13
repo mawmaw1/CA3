@@ -15,12 +15,12 @@
             </tr>
         </thead>
         <tbody>
-            <td>{{ctrl.data.vat}}</td>
-            <td>{{ctrl.data.address}}</td>
-            <td>{{ctrl.data.zipcode}}, {{ctrl.data.city}}</td>
-            <td>{{ctrl.data.startdate}}</td>
-            <td>{{ctrl.data.employees}}</td>
-            <td>Aktiv</td>
+        <td>{{ctrl.data.vat}}</td>
+        <td>{{ctrl.data.address}}</td>
+        <td>{{ctrl.data.zipcode}}, {{ctrl.data.city}}</td>
+        <td>{{ctrl.data.startdate}}</td>
+        <td>{{ctrl.data.employees}}</td>
+        <td>Aktiv</td>
         </tbody>
     </table>
     <uib-accordion ng-repeat="d in ctrl.data.productionunits">
@@ -42,11 +42,11 @@
                         <td>{{d.city}}</td>
                         <td>{{d.phone}}</td>
                         <td>{{d.email}}</td>
-                        
+
                     </tr>
                 </tbody>
             </table>
-            
+
         </uib-accordion-group>
     </uib-accordion>
-
+</div>
