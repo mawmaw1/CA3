@@ -1,17 +1,52 @@
-<p>This is the partial for view 2.</p>
+
+
 <div>
-  <p>Data from server (Users ONLY) <b style="color: darkblue">{{data}}</b></p>
-  
-  <input type="text" ng-model="ctrl.cvr">
-  <button ng-click="ctrl.getCvr(ctrl.cvr)">Search</button>
-  <input id="countries"/>
-  <div>
-      <table>
-          <tr ng-repeat="balls in ctrl.data.productionunits">
-              <td>
-                  {{balls.name}}
-              </td>
-          </tr>
-      </table>
-  </div>
-</div>
+    <button ng-click="ctrl.getCvr()">Tryk her</button>
+    <h2>{{ctrl.data.name}}</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>CVR-number</th>
+                <th>Address</th>
+                <th>Zip+city</th>
+                <th>Start date</th>
+                <th>Employees</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <td>{{ctrl.data.vat}}</td>
+            <td>{{ctrl.data.address}}</td>
+            <td>{{ctrl.data.zipcode}}, {{ctrl.data.city}}</td>
+            <td>{{ctrl.data.startdate}}</td>
+            <td>{{ctrl.data.employees}}</td>
+            <td>Aktiv</td>
+        </tbody>
+    </table>
+    <uib-accordion ng-repeat="d in ctrl.data.productionunits">
+        <uib-accordion-group heading="{{d.name}}, {{d.address}}" style="margin: 1px;">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Address</th>
+                        <th>Zip code</th>
+                        <th>City</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                    </tr>  
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{d.address}}</td>
+                        <td>{{d.zipcode}}</td>
+                        <td>{{d.city}}</td>
+                        <td>{{d.phone}}</td>
+                        <td>{{d.email}}</td>
+                        
+                    </tr>
+                </tbody>
+            </table>
+            
+        </uib-accordion-group>
+    </uib-accordion>
+
