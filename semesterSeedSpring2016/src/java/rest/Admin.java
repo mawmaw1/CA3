@@ -61,7 +61,11 @@ public class Admin {
     @Produces("application/json")
     public String deleteUser(@PathParam("username") String username) {
         entity.User c = fc.deleteUser(username);
-        return gson.toJson(c);
+        //return gson.toJson(c);
+        
+        JsonObject jo = new JsonObject();
+        jo.addProperty("userName", c.getUserName());
+        return gson.toJson(jo);
     }
  
 }
