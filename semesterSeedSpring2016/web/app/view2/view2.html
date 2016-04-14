@@ -1,15 +1,15 @@
 
 
 <div>
-    <input type="text" ng-model="ctrl.inputType">
-        <select name="singleSelect" ng-model="ctrl.data.singleSelect">
+    <input type="text" ng-model="ctrl.inputType" class="form-control" style="width: 25%; display: inline-block;">
+        <select name="singleSelect" ng-model="ctrl.data.singleSelect" style="display: inline-block;">
       <option value="cvr">CVR</option>
       <option value="name">Name</option>
       <option value="phone">Phone</option>
     </select><br>
     
     
-    <button ng-click="ctrl.getCompany(ctrl.inputType, ctrl.data.singleSelect)">Tryk her</button>
+    <button ng-click="ctrl.getCompany(ctrl.inputType, ctrl.data.singleSelect)" class="btn btn-default">Tryk her</button>
     
     <h2>{{ctrl.data.name}}</h2>
     <table class="table table-striped">
