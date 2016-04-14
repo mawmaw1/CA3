@@ -61,12 +61,12 @@ public class DeploymentConfiguration implements ServletContextListener {
 
       try {
         em.getTransaction().begin();
-        em.persist(userRole);
-        em.persist(adminRole);
-
-        em.persist(user);
-        em.persist(admin);
-        em.persist(both);
+//        em.persist(userRole);
+//        em.persist(adminRole);
+//
+//        em.persist(user);
+//        em.persist(admin);
+//        em.persist(both);
         em.getTransaction().commit();
       } finally {
         em.close();

@@ -1,16 +1,16 @@
 'use strict';
 
-angular.module('myApp.view2', ['ngRoute'])
+var app = angular.module('myApp.view2', ['ngRoute'])
 
-        .config(['$routeProvider', function ($routeProvider) {
+        app.config(['$routeProvider', function ($routeProvider) {
                 $routeProvider.when('/view2', {
                     templateUrl: 'app/view2/view2.html',
                     controller: 'View2Ctrl',
                     controllerAs: 'ctrl'
                 });
-            }])
+            }]);
 
-        .controller('View2Ctrl', ['$http', function ($http) {
+        app.controller('View2Ctrl', ['$http', function ($http) {
                 var self = this;
                 self.getCvr = (function (cvr) {
                     $http({
@@ -27,3 +27,19 @@ angular.module('myApp.view2', ['ngRoute'])
 
 
             }]);
+app.filter("roleFilter", [function () {
+        return function (inputItem) {
+            var res = "";
+            for (var i = 0; i < inputItem.length; i++) {
+                if (inputItem[i] === inputItem[inputItem.length-1]) {
+                    res += inputItem[i].role;
+                }
+                else {
+                    res += inputItem[i].role + ", ";
+                }
+                
+            }
+            return res;
+
+        };
+    }]);
