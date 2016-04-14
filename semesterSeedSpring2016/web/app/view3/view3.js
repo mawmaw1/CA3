@@ -24,12 +24,10 @@ app.controller('View3Ctrl', ["$http", function ($http) {
         };
         self.getUsers();       
         self.deleteUser = function (username){
-            $http.delete("api/admin/user/"+username).success(function (res){
+            $http.delete("api/admin/user/"+username).then(function (res){
                 console.log(res);
-                alert(res.userName + " has been deleted");
+                alert(res.data.userName + " has been deleted");
                 self.getUsers();
-            }).error(function (data){
-                console.log(data);
             });
         };
     }]);
