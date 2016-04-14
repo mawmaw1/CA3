@@ -92,6 +92,7 @@ public class UserFacade implements IUserFacade {
             em.createQuery("delete from User u where u.userName = :username").setParameter("username", username).executeUpdate();
             //em.remove(u);
             em.getTransaction().commit();
+            
             return u;
         } finally {
             em.close();
