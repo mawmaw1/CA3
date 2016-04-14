@@ -1,7 +1,7 @@
 'use strict';
 
 var app = angular.module('myApp.view6', ['ngRoute'])
-    
+
 
 app.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/view6', {
@@ -11,17 +11,46 @@ app.config(['$routeProvider', function ($routeProvider) {
         });
     }]);
 
-app.controller('View6Ctrl', ["$http", function ($http) {
+app.controller('View6Ctrl', ["$http", "CurrencyFactory", "$filter", function ($http, CurrencyFactory, $filter) {
         var self = this;
-        self.getRates = function (){
-            $http.get('api/data/dailyrates')
-                .success(function (data, status, headers, config) {
-                    console.log(data);
-                    self.data = data;
-                })
-                .error(function (data, status, headers, config) {
+        
+        self.getRatesHttp = function () {
+            CurrencyFactory.getCurrency().success(function (data, status, headers, config) {
+                console.log(data);
+                self.data = data;
+            })
+                    .error(function (data, status, headers, config) {
 
-                });
+                    });
         };
-        self.getRates();       
+        self.getRatesHttp();
+
+        self.calculate = function () {
+            self.result = self.amount * (self.fromSelected / self.toSelected);
+        };
+        
+    }]);
+
+app.filter("result", [function () {
+        return function (input, from, to) {
+            return input * (from / to);
+        };
+    }]);
+
+app.factory('CurrencyFactory', ['$http', function ($http) {
+        var self = this;
+        var getCurrency = (function () {
+            
+            return getCurrency =
+                    $http({
+                        method: 'GET',
+                        url: 'api/data/dailyrates'
+                    });
+        });
+        
+        return {
+            getCurrency: getCurrency
+
+        };
+
     }]);

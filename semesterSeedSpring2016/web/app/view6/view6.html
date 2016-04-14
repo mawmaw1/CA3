@@ -1,5 +1,22 @@
 <h2>Todays rates</h2>
+From: <select id="fromcurrency" ng-model="ctrl.fromSelected">
+    <option ng-repeat="r in ctrl.data" value="{{r.rate}}">
+        {{r.countryCode}}
+    </option>   
+</select>
+ 
+ <input type="text" ng-model="ctrl.amount">
+ 
+ To: 
+ <select id="tocurrency" ng-model="ctrl.toSelected">
+    <option ng-repeat="r in ctrl.data" value="{{r.rate}}">
+        {{r.countryCode}}
+    </option>   
+ </select>
 
+ <input readonly class="form-control" type="text" value="{{ctrl.amount | result: ctrl.fromSelected: ctrl.toSelected}}">
+ <!--<button class="btn btn-default" ng-click="ctrl.calculate()">Convert</button>-->
+ <!--<label>{{ctrl.amount | result: ctrl.fromSelected: ctrl.toSelected}}</label>-->
 <table class="table table-striped">
           <thead>
               <tr>
