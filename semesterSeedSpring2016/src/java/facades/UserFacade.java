@@ -89,7 +89,9 @@ public class UserFacade implements IUserFacade {
             entity.User u = em.find(entity.User.class, username);
            
             em.getTransaction().begin();
-            em.remove(u);
+            em.createQuery("delete from User u where u.userName = :username").setParameter("username", username).executeUpdate();
+            //em.remove(u);
+            
             em.getTransaction().commit();
             
             return u;
