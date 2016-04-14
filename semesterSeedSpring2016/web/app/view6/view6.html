@@ -1,1 +1,38 @@
-Test
+<h2>Todays rates</h2>
+
+<table class="table table-striped">
+          <thead>
+              <tr>
+                  <th>
+                      Country code
+                  </th>
+                  <th>
+                      Description 
+                  </th>
+                  <th>
+                      Date
+                  </th>
+                  <th>
+                      Rate
+                  </th>
+                 
+              </tr>
+          </thead>
+          <tbody>
+              <tr ng-repeat="r in ctrl.data">
+                  <td>
+                    {{r.countryCode}}  
+                  </td>
+                  <td >
+                      {{r.description}}
+                  </td>
+                  <td>
+                      {{r.dailyDate}}
+                  </td>
+                  <td>
+                      {{r.rate}}
+                  </td>
+               
+              </tr>
+          </tbody>
+      </table>
