@@ -17,7 +17,7 @@ public class Role implements Serializable {
   
   private static final long serialVersionUID = 1L;
   @Id
-  private String roleName ;
+  private String roleName;
 
   public Role(String roleName) {
     this.roleName = roleName;
