@@ -1,55 +1,64 @@
-<h2>Todays rates</h2>
-From: <select id="fromcurrency" ng-model="ctrl.fromSelected">
-    <option ng-repeat="r in ctrl.data" value="{{r.rate}}">
-        {{r.countryCode}}
-    </option>   
-</select>
- 
- <input type="text" ng-model="ctrl.amount">
- 
- To: 
- <select id="tocurrency" ng-model="ctrl.toSelected">
-    <option ng-repeat="r in ctrl.data" value="{{r.rate}}">
-        {{r.countryCode}}
-    </option>   
- </select>
+<!--<h2>Todays rates</h2>-->
 
- <input readonly class="form-control" type="text" value="{{ctrl.amount | result: ctrl.fromSelected: ctrl.toSelected}}">
- <!--<button class="btn btn-default" ng-click="ctrl.calculate()">Convert</button>-->
- <!--<label>{{ctrl.amount | result: ctrl.fromSelected: ctrl.toSelected}}</label>-->
+<div style="margin: auto;">
+    <center>
+        <h2>Currency converter</h2>
+        <input type="text" ng-model="ctrl.amount" class="form-control" style="width: 20%;"><br>
+
+        <span>From:</span>
+        <select id="fromcurrency" ng-model="ctrl.fromSelected" class="form-control" style="width: 6%; display: inline-block; height: 125%;">
+            <option ng-repeat="r in ctrl.data" value="{{r.rate}}">
+                {{r.countryCode}}
+            </option>   
+        </select>
+
+        <span>To:</span> 
+        <select id="tocurrency" ng-model="ctrl.toSelected" class="form-control" style="width: 6%; display: inline-block; height: 125%;">
+            <option ng-repeat="r in ctrl.data" value="{{r.rate}}">
+                {{r.countryCode}}
+            </option>   
+        </select>
+
+        <br>
+
+        <input readonly class="form-control" type="text" value="{{ctrl.amount| result: ctrl.fromSelected: ctrl.toSelected}}" style="width: 20%; margin-top: 2%">
+        <!--<button class="btn btn-default" ng-click="ctrl.calculate()">Convert</button>-->
+        <!--<label>{{ctrl.amount | result: ctrl.fromSelected: ctrl.toSelected}}</label>-->
+    </center>
+</div>
 <table class="table table-striped">
-          <thead>
-              <tr>
-                  <th>
-                      Country code
-                  </th>
-                  <th>
-                      Description 
-                  </th>
-                  <th>
-                      Date
-                  </th>
-                  <th>
-                      Rate
-                  </th>
-                 
-              </tr>
-          </thead>
-          <tbody>
-              <tr ng-repeat="r in ctrl.data">
-                  <td>
-                    {{r.countryCode}}  
-                  </td>
-                  <td >
-                      {{r.description}}
-                  </td>
-                  <td>
-                      {{r.dailyDate}}
-                  </td>
-                  <td>
-                      {{r.rate}}
-                  </td>
-               
-              </tr>
-          </tbody>
-      </table>
+    <thead>
+        <tr>
+            <th>
+                Country code
+            </th>
+            <th>
+                Description 
+            </th>
+            <th>
+                Date
+            </th>
+            <th>
+                Rate
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="r in ctrl.data">
+            <td>
+                {{r.countryCode}}  
+            </td>
+            <td >
+                {{r.description}}
+            </td>
+            <td>
+                {{r.dailyDate}}
+            </td>
+            <td>
+                {{r.rate}}
+            </td>
+
+        </tr>
+    </tbody>
+</table>
