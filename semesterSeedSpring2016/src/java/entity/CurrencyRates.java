@@ -27,8 +27,8 @@ public class CurrencyRates implements Serializable {
     private Integer id;
     private String countryCode;
     private String description;
-    @Temporal(TemporalType.DATE)
-    private Date dailyDate;
+    //@Temporal(TemporalType.DATE)
+    private String dailyDate;
 
     private double rate;
 
@@ -48,11 +48,11 @@ public class CurrencyRates implements Serializable {
         this.description = description;
     }
 
-    public Date getDailyDate() {
+    public String getDailyDate() {
         return dailyDate;
     }
 
-    public void setDailyDate(Date dailyDate) {
+    public void setDailyDate(String dailyDate) {
         this.dailyDate = dailyDate;
     }
 

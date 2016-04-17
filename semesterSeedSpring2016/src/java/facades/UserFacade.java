@@ -83,15 +83,22 @@ public class UserFacade implements IUserFacade {
         }
     }
     
+    public List<entity.CurrencyRates> getRates() {
+        EntityManager em = emf.createEntityManager();
+        try {
+            return em.createQuery("select r from CurrencyRates r where r.dailyDate = :date").setParameter("date", xml.XmlReader.date).getResultList();
+        } finally {
+            em.close();
+        }
+    }
+    
     public entity.User deleteUser(String username) {
         EntityManager em = emf.createEntityManager();
         try {
-            entity.User u = em.find(entity.User.class, username);
-           
+            entity.User u = em.find(entity.User.class, username);         
             em.getTransaction().begin();
-            em.createQuery("delete from User u where u.userName = :username").setParameter("username", username).executeUpdate();
-            //em.remove(u);
-            
+            //em.createQuery("delete from User u where u.userName = :username").setParameter("username", username).executeUpdate();
+            em.remove(u);         
             em.getTransaction().commit();
             
             return u;

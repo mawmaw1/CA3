@@ -28,6 +28,8 @@ import javax.persistence.Persistence;
 import openshift_deploy.DeploymentConfiguration;
 
 public class XmlReader extends DefaultHandler implements Runnable {
+    
+    public static String date = "";
 
     @Override
     public void startDocument() throws SAXException {
@@ -44,7 +46,18 @@ public class XmlReader extends DefaultHandler implements Runnable {
 //     System.out.print("Element: " + localName + ": ");
 
         List<CurrencyRates> cr = new ArrayList();
+        for (int i = 0; i < attributes.getLength(); i++) {       
+            if (attributes.getQName(i).equals("id")) {
+                date = attributes.getValue(0);
+            }           
+        }
+
         for (int i = 0; i < attributes.getLength(); i++) {
+            
+            if (attributes.getLocalName(i).equals("id")) {
+                date = attributes.getValue(0);
+            }
+            
             if (attributes.getLocalName(i).equals("code")) {
                 String countryCode = attributes.getValue(0);
                 Double rate = 0.0;
@@ -58,20 +71,15 @@ public class XmlReader extends DefaultHandler implements Runnable {
                 CurrencyRates cura = new CurrencyRates();
                 cura.setCountryCode(countryCode);
                 cura.setDescription(desc);
-                cura.setRate(rate);
-                cura.setDailyDate(new Date());
+                cura.setRate(rate);            
+                cura.setDailyDate(date);
                 cr.add(cura);
-
-                System.out.println("Country code: " + countryCode + " Description: " + desc + " rate: " + rate);
-
             }
-//            System.out.print( attributes.getLocalName(i) + ": " + attributes.getValue(i) + " ");
         }
-
+        
         EntityManagerFactory emf = Persistence.createEntityManagerFactory(DeploymentConfiguration.PU_NAME);
 
         EntityManager em = emf.createEntityManager();
-
         for (CurrencyRates cura : cr) {
             try {
                 em.getTransaction().begin();
@@ -83,13 +91,11 @@ public class XmlReader extends DefaultHandler implements Runnable {
                 em.close();
             }
         }
-
     }
 
     @Override
     public void run() {
 
-        
         try {
             XMLReader xr = XMLReaderFactory.createXMLReader();
             xr.setContentHandler(new XmlReader());
@@ -107,7 +113,7 @@ public class XmlReader extends DefaultHandler implements Runnable {
         } catch (SAXException ex) {
             Logger.getLogger(XmlReader.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 
 }
