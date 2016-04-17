@@ -1,63 +1,65 @@
-
-
 <div>
-    <input type="text" ng-model="ctrl.inputType" class="form-control" style="width: 25%; display: inline-block;">
-        <select name="singleSelect" ng-model="ctrl.data.singleSelect" style="display: inline-block;">
-      <option value="cvr">CVR</option>
-      <option value="name">Name</option>
-      <option value="phone">Phone</option>
+    <input type="text" placeholder="Search" ng-model="ctrl.inputType" class="form-control" style="width: 25%; display: inline-block;">
+    <select class="form-control" name="singleSelect" ng-model="ctrl.data.singleSelect" style="display: inline-block; width: 10%;">
+        <option value="cvr">CVR</option>
+        <option value="name">Name</option>
+        <option value="phone">Phone</option>
     </select><br>
-    
-    
-    <button ng-click="ctrl.getCompany(ctrl.inputType, ctrl.data.singleSelect)" class="btn btn-default">Tryk her</button>
-    
+
+
+    <button ng-click="ctrl.getCompany(ctrl.inputType, ctrl.data.singleSelect); showme=true" class="btn btn-default">Tryk her</button>
+
     <h2>{{ctrl.data.name}}</h2>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>CVR-number</th>
-                <th>Address</th>
-                <th>Zip+city</th>
-                <th>Start date</th>
-                <th>Employees</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-            <td>{{ctrl.data.vat}}</td>
-            <td>{{ctrl.data.address}}</td>
-            <td>{{ctrl.data.zipcode}}, {{ctrl.data.city}}</td>
-            <td>{{ctrl.data.startdate}}</td>
-            <td>{{ctrl.data.employees}}</td>
-            <td>Aktiv</td>
-            </tr>
-        </tbody>
-    </table>
-    <uib-accordion ng-repeat="d in ctrl.data.productionunits">
-        <uib-accordion-group heading="{{d.name}}, {{d.address}}" style="margin: 1px;">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Address</th>
-                        <th>Zip code</th>
-                        <th>City</th>
-                        <th>Phone</th>
-                        <th>Email</th>
-                    </tr>  
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>{{d.address}}</td>
-                        <td>{{d.zipcode}}</td>
-                        <td>{{d.city}}</td>
-                        <td>{{d.phone}}</td>
-                        <td>{{d.email}}</td>
+    <div>
+        <table class="table table-striped" ng-show="showme" style="background: #b3cccc;">
+            <thead>
+                <tr>
+                    <th>CVR-number</th>
+                    <th>Address</th>
+                    <th>Zip+city</th>
+                    <th>Start date</th>
+                    <th>Employees</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ctrl.data.vat}}</td>
+                    <td>{{ctrl.data.address}}</td>
+                    <td>{{ctrl.data.zipcode}}, {{ctrl.data.city}}</td>
+                    <td>{{ctrl.data.startdate}}</td>
+                    <td>{{ctrl.data.employees}}</td>
+                    <td>Aktiv</td>
+                </tr>
+            </tbody>
+        </table>
+        <hr style="background: #b3cccc; margin-bottom: 50px; margin-top: 20px; height: 7px;">
+        <uib-accordion ng-repeat="d in ctrl.data.productionunits">
+            <uib-accordion-group heading="{{d.name}}, {{d.address}}" style="margin: 1px; background: #e0ebeb;">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Address</th>
+                            <th>Zip code</th>
+                            <th>City</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                        </tr>  
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{d.address}}</td>
+                            <td>{{d.zipcode}}</td>
+                            <td>{{d.city}}</td>
+                            <td>{{d.phone}}</td>
+                            <td>{{d.email}}</td>
 
-                    </tr>
-                </tbody>
-            </table>
+                        </tr>
+                    </tbody>
+                </table>
 
-        </uib-accordion-group>
-    </uib-accordion>
+            </uib-accordion-group>
+        </uib-accordion>
+        
+    </div>
 </div>
