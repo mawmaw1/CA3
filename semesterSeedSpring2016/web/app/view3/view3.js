@@ -32,19 +32,19 @@ app.controller('View3Ctrl', ["$http", function ($http) {
         };
     }]);
 
-app.filter("roleFilter", [function () {
-        return function (inputItem) {
-            var res = "";
-            for (var i = 0; i < inputItem.length; i++) {
-                if (inputItem[i] === inputItem[inputItem.length-1]) {
-                    res += inputItem[i].role;
-                }
-                else {
-                    res += inputItem[i].role + ", ";
-                }
-                
-            }
-            return res;
-
-        };
-    }]);
+//app.filter("roleFilter", [function () {
+//        return function (inputItem) {
+//            var res = "";
+//            for (var i = 0; i < inputItem.length; i++) {
+//                if (inputItem[i] === inputItem[inputItem.length-1]) {
+//                    res += inputItem[i].role;
+//                }
+//                else {
+//                    res += inputItem[i].role + ", ";
+//                }
+//                
+//            }
+//            return res;
+//
+//        };
+//    }]);
