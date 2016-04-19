@@ -60,7 +60,7 @@ app.factory('GetFactory', ['$http', function ($http) {
             return getCvr =
                     $http({
                         method: 'GET',
-                        url: 'http://cvrapi.dk/api?vat=' + cvr + '&country=dk',
+                        url: 'https://cvrapi.dk/api?vat=' + cvr + '&country=dk',
                         skipAuthorization: true
                     });
         });
@@ -68,7 +68,7 @@ app.factory('GetFactory', ['$http', function ($http) {
             return getName =
                     $http({
                         method: 'GET',
-                        url: 'http://cvrapi.dk/api?name=' + name + '&country=dk',
+                        url: 'https://cvrapi.dk/api?name=' + name + '&country=dk',
                         skipAuthorization: true
                     });
         });
@@ -76,7 +76,7 @@ app.factory('GetFactory', ['$http', function ($http) {
             return getPhone =
                     $http({
                         method: 'GET',
-                        url: 'http://cvrapi.dk/api?phone=' + phone + '&country=dk',
+                        url: 'https://cvrapi.dk/api?phone=' + phone + '&country=dk',
                         skipAuthorization: true
                     });
         });

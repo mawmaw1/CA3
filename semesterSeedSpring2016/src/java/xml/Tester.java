@@ -29,8 +29,8 @@ public class Tester {
             xr.parse(new InputSource(url.openStream()));
         } catch (SAXException | IOException e) {
             e.printStackTrace();
+
         }
-        
-        
+
     }
 }

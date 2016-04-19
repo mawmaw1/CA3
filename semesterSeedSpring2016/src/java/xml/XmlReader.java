@@ -28,7 +28,8 @@ import javax.persistence.Persistence;
 import openshift_deploy.DeploymentConfiguration;
 
 public class XmlReader extends DefaultHandler implements Runnable {
-    
+
+    private boolean weekend = true;
     public static String date = "";
 
     @Override
@@ -38,7 +39,8 @@ public class XmlReader extends DefaultHandler implements Runnable {
 
     @Override
     public void endDocument() throws SAXException {
-        // System.out.println("End Document (Sax-event)");
+        weekend = true;
+
     }
 
     @Override
@@ -46,37 +48,44 @@ public class XmlReader extends DefaultHandler implements Runnable {
 //     System.out.print("Element: " + localName + ": ");
 
         List<CurrencyRates> cr = new ArrayList();
-        for (int i = 0; i < attributes.getLength(); i++) {       
-            if (attributes.getQName(i).equals("id")) {
-                date = attributes.getValue(0);
-            }           
-        }
-
+        System.out.println(cr.size());
         for (int i = 0; i < attributes.getLength(); i++) {
-            
-            if (attributes.getLocalName(i).equals("id")) {
-                date = attributes.getValue(0);
-            }
-            
-            if (attributes.getLocalName(i).equals("code")) {
-                String countryCode = attributes.getValue(0);
-                Double rate = 0.0;
-                try {
-                    rate = Double.parseDouble(attributes.getValue(2));
-                } catch (Exception e) {
+            if (attributes.getQName(i).equals("id")) {
+                if (!attributes.getValue(0).equals(date)) {
+                    date = attributes.getValue(0);
+                    weekend = false;
 
                 }
-                String desc = attributes.getValue(1);
-
-                CurrencyRates cura = new CurrencyRates();
-                cura.setCountryCode(countryCode);
-                cura.setDescription(desc);
-                cura.setRate(rate);            
-                cura.setDailyDate(date);
-                cr.add(cura);
             }
         }
-        
+        if (!weekend) {
+
+            for (int i = 0; i < attributes.getLength(); i++) {
+
+                if (attributes.getLocalName(i).equals("id")) {
+                    date = attributes.getValue(0);
+                }
+
+                if (attributes.getLocalName(i).equals("code")) {
+                    String countryCode = attributes.getValue(0);
+                    Double rate = 0.0;
+                    try {
+                        rate = Double.parseDouble(attributes.getValue(2));
+                    } catch (Exception e) {
+
+                    }
+                    String desc = attributes.getValue(1);
+
+                    CurrencyRates cura = new CurrencyRates();
+                    cura.setCountryCode(countryCode);
+                    cura.setDescription(desc);
+                    cura.setRate(rate);
+                    cura.setDailyDate(date);
+                    cr.add(cura);
+                }
+            }
+        }
+
         EntityManagerFactory emf = Persistence.createEntityManagerFactory(DeploymentConfiguration.PU_NAME);
 
         EntityManager em = emf.createEntityManager();
@@ -91,6 +100,7 @@ public class XmlReader extends DefaultHandler implements Runnable {
                 em.close();
             }
         }
+
     }
 
     @Override
@@ -99,17 +109,12 @@ public class XmlReader extends DefaultHandler implements Runnable {
         try {
             XMLReader xr = XMLReaderFactory.createXMLReader();
             xr.setContentHandler(new XmlReader());
-            URL url = null;
-            try {
-                url = new URL("http://www.nationalbanken.dk/_vti_bin/DN/DataService.svc/CurrencyRatesXML?lang=en");
-            } catch (MalformedURLException ex) {
-                Logger.getLogger(XmlReader.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            try {
-                xr.parse(new InputSource(url.openStream()));
-            } catch (IOException ex) {
-                Logger.getLogger(XmlReader.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            URL url = new URL("http://www.nationalbanken.dk/_vti_bin/DN/DataService.svc/CurrencyRatesXML?lang=en");
+
+            xr.parse(new InputSource(url.openStream()));
+
+        } catch (IOException ex) {
+            Logger.getLogger(XmlReader.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SAXException ex) {
             Logger.getLogger(XmlReader.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -34,7 +34,7 @@ public class Data {
 
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
     UserFacade fc = new UserFacade();
-    
+
     @Context
     private UriInfo context;
 
@@ -73,7 +73,7 @@ public class Data {
         fc.addPerson(u);
         //   return gson.toJson(u);
     }
-    
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/dailyrates")
@@ -81,4 +81,12 @@ public class Data {
         return gson.toJson(fc.getRates());
     }
 
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/date")
+    public String changeDate() {
+        xml.XmlReader.date = "";
+        return gson.toJson(xml.XmlReader.date);
+        
+    }
 }
